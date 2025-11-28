@@ -2,6 +2,11 @@ import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
 import com.kms.katalon.core.checkpoint.CheckpointFactory as CheckpointFactory
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as MobileBuiltInKeywords
@@ -12,6 +17,7 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testdata.TestDataFactory as TestDataFactory
 import com.kms.katalon.core.testobject.ObjectRepository as ObjectRepository
 import com.kms.katalon.core.testobject.TestObject as TestObject
+import com.kms.katalon.core.testobject.ConditionType as ConditionType
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WSBuiltInKeywords
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
@@ -20,35 +26,32 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.testobject.SelectorMethod
-
-import com.thoughtworks.selenium.Selenium
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.WebDriver
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium
-import static org.junit.Assert.*
-import java.util.regex.Pattern
-import static org.apache.commons.lang3.StringUtils.join
-import org.testng.asserts.SoftAssert
-import com.kms.katalon.core.testdata.CSVData
 import org.openqa.selenium.Keys as Keys
+import org.testng.asserts.SoftAssert
 
-// TC03: Attempt to submit a review as guest (not logged in)
-SoftAssert softAssertion = new SoftAssert();
-WebUI.openBrowser('about:blank')
-def driver = DriverFactory.getWebDriver()
-String baseUrl = "https://nest.botble.com/vi"
-selenium = new WebDriverBackedSelenium(driver, baseUrl)
+// TC03: Thử gửi review khi chưa đăng nhập -> kỳ vọng bắt login hoặc hiển thị yêu cầu đăng nhập
+SoftAssert softAssertion = new SoftAssert()
 
-// Open product page without login
-selenium.open(baseUrl + "/products/angies-boomchickapop-sweet-salty-kettle-corn")
-selenium.click("id=Reviews-tab")
-selenium.click("id=rating-star-5")
-selenium.type("name=comment", ("Thử gửi review khi chưa đăng nhập").toString())
-selenium.click("xpath=//div[@id='Reviews']/div/div/div[2]/form/button")
+WebUI.openBrowser('')
+String baseUrl = 'https://nest.botble.com/vi'
 
-// Expected behavior: either redirect to login or show a message requiring login
-boolean redirectedToLogin = selenium.getLocation().contains("/login")
-boolean loginMsg = selenium.isTextPresent("Vui lòng đăng nhập") || selenium.isTextPresent("Please login")
+// Mở trang sản phẩm (không login)
+WebUI.navigateToUrl(baseUrl + '/products/angies-boomchickapop-sweet-salty-kettle-corn')
+TestObject tabReviews = new TestObject().addProperty('id', ConditionType.EQUALS, 'Reviews-tab')
+WebUI.click(tabReviews)
 
-softAssertion.assertTrue(redirectedToLogin || loginMsg, "Guest submit should require login")
+TestObject star5 = new TestObject().addProperty('id', ConditionType.EQUALS, 'rating-star-5')
+WebUI.click(star5)
+
+TestObject txtComment = new TestObject().addProperty('name', ConditionType.EQUALS, 'comment')
+WebUI.setText(txtComment, 'Thử gửi review khi chưa đăng nhập')
+
+TestObject btnSubmit = new TestObject().addProperty('xpath', ConditionType.EQUALS, "//div[@id='Reviews']/div/div/div[2]/form/button")
+WebUI.click(btnSubmit)
+
+// Kiểm tra: redirect đến login hoặc hiển thị thông báo yêu cầu đăng nhập
+boolean redirected = WebUI.getUrl().contains('/login')
+boolean showMsg = WebUI.verifyTextPresent('Vui lòng đăng nhập', false, FailureHandling.OPTIONAL) || WebUI.verifyTextPresent('Please login', false, FailureHandling.OPTIONAL)
+
+softAssertion.assertTrue(redirected || showMsg, 'Guest submit should require login')
 softAssertion.assertAll()

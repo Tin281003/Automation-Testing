@@ -12,6 +12,7 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testdata.TestDataFactory as TestDataFactory
 import com.kms.katalon.core.testobject.ObjectRepository as ObjectRepository
 import com.kms.katalon.core.testobject.TestObject as TestObject
+import com.kms.katalon.core.testobject.ConditionType as ConditionType
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WSBuiltInKeywords
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
@@ -20,39 +21,44 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.testobject.SelectorMethod
-
-import com.thoughtworks.selenium.Selenium
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.WebDriver
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium
-import static org.junit.Assert.*
-import java.util.regex.Pattern
-import static org.apache.commons.lang3.StringUtils.join
-import org.testng.asserts.SoftAssert
-import com.kms.katalon.core.testdata.CSVData
 import org.openqa.selenium.Keys as Keys
+import org.testng.asserts.SoftAssert
 
-// TC02: Login and submit a 5-star review with a Vietnamese comment
-SoftAssert softAssertion = new SoftAssert();
-WebUI.openBrowser('about:blank')
-def driver = DriverFactory.getWebDriver()
-String baseUrl = "https://nest.botble.com/vi"
-selenium = new WebDriverBackedSelenium(driver, baseUrl)
+// TC02: Đăng nhập và gửi review 5 sao (sử dụng TestObject tạo tại chỗ)
+SoftAssert softAssertion = new SoftAssert()
 
+WebUI.openBrowser('')
+String baseUrl = 'https://nest.botble.com/vi'
+
+// Dùng biến môi trường cho credential để tránh commit secrets
 String email = System.getenv('E2E_EMAIL') ?: 'dung@gmail.com'
 String pwd = System.getenv('E2E_PASS') ?: '123456'
 
-selenium.open(baseUrl + "/login")
-selenium.type("id=email", email)
-selenium.type("id=password", pwd)
-selenium.click("xpath=//form[@id='botble-ecommerce-forms-fronts-auth-login-form']/div[4]/button")
+// Mở trang login và nhập thông tin
+WebUI.navigateToUrl(baseUrl + '/login')
+TestObject txtEmail = new TestObject().addProperty('id', ConditionType.EQUALS, 'email')
+TestObject txtPassword = new TestObject().addProperty('id', ConditionType.EQUALS, 'password')
+WebUI.setText(txtEmail, email)
+WebUI.setText(txtPassword, pwd)
+TestObject btnLogin = new TestObject().addProperty('xpath', ConditionType.EQUALS, "//form[@id='botble-ecommerce-forms-fronts-auth-login-form']/div[4]/button")
+WebUI.click(btnLogin)
 
-selenium.open(baseUrl + "/products/angies-boomchickapop-sweet-salty-kettle-corn")
-selenium.click("id=Reviews-tab")
-selenium.click("id=rating-star-5")
-selenium.type("name=comment", ("Sản phẩm chất lượng, rất hài lòng").toString())
-selenium.click("xpath=//div[@id='Reviews']/div/div/div[2]/form/button")
+// Mở sản phẩm và gửi review
+WebUI.navigateToUrl(baseUrl + '/products/angies-boomchickapop-sweet-salty-kettle-corn')
+TestObject tabReviews = new TestObject().addProperty('id', ConditionType.EQUALS, 'Reviews-tab')
+WebUI.click(tabReviews)
 
-// best-effort verification
-softAssertion.assertTrue(selenium.isTextPresent("Sản phẩm chất lượng, rất hài lòng"), "Submitted review text should appear")
+TestObject star5 = new TestObject().addProperty('id', ConditionType.EQUALS, 'rating-star-5')
+WebUI.click(star5)
+
+TestObject txtComment = new TestObject().addProperty('name', ConditionType.EQUALS, 'comment')
+String comment = 'Sản phẩm chất lượng, rất hài lòng'
+WebUI.setText(txtComment, comment)
+
+TestObject btnSubmit = new TestObject().addProperty('xpath', ConditionType.EQUALS, "//div[@id='Reviews']/div/div/div[2]/form/button")
+WebUI.click(btnSubmit)
+
+// Kiểm tra xuất hiện nội dung vừa gửi (best-effort)
+boolean present = WebUI.verifyTextPresent(comment, false, FailureHandling.OPTIONAL)
+softAssertion.assertTrue(present, 'Submitted review text should appear')
 softAssertion.assertAll()
