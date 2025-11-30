@@ -1,15 +1,123 @@
 {
-    "configuration": { "device": { "orientation": "landscape", "deviceName": "Desktop" } },
-    "type": "clickpath",
-    "version": "1.0",
-    "events": [
-        { "description": "navigate to login", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/login" },
-        { "description": "type email", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#email" }] }, "type": "keystrokes", "textValue": "dung@gmail.com", "simulateBlurEvent": true, "masked": false },
-        { "description": "type password", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#password" }] }, "type": "keystrokes", "textValue": "123456", "simulateBlurEvent": true, "masked": false },
-        { "description": "click login", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "dom", "value": "document.evaluate('//form[@id=\\'botble-ecommerce-forms-fronts-auth-login-form\\']/div[4]/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()" }] }, "type": "click", "button": 0 },
-        { "description": "open home page", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/" },
-        { "description": "click add-to-compare product 1", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "dom", "value": "document.evaluate(\"(//a[contains(@class,'compare')])[1]\", document, null, XPathResult.ANY_TYPE, null).iterateNext()" }] }, "type": "click", "button": 0 },
-        { "description": "click add-to-compare product 2", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "dom", "value": "document.evaluate(\"(//a[contains(@class,'compare')])[2]\", document, null, XPathResult.ANY_TYPE, null).iterateNext()" }] }, "type": "click", "button": 0 },
-        { "description": "open compare page", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/compare" }
-    ]
+  "configuration": {
+    "device": {
+      "orientation": "landscape",
+      "deviceName": "Desktop"
+    }
+  },
+  "type": "clickpath",
+  "version": "1.0",
+  "events": [
+    {
+      "description": "navigate to login",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {},
+      "type": "navigate",
+      "url": "https://nest.botble.com/vi/login"
+    },
+    {
+      "description": "type email",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {
+        "locators": [
+          {
+            "type": "css",
+            "value": "#email"
+          }
+        ]
+      },
+      "type": "keystrokes",
+      "textValue": "dung@gmail.com",
+      "simulateBlurEvent": true,
+      "masked": false
+    },
+    {
+      "description": "type password",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {
+        "locators": [
+          {
+            "type": "css",
+            "value": "#password"
+          }
+        ]
+      },
+      "type": "keystrokes",
+      "textValue": "123456",
+      "simulateBlurEvent": true,
+      "masked": false
+    },
+    {
+      "description": "click login",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {
+        "locators": [
+          {
+            "type": "dom",
+            "value": "document.evaluate('//form[@id=\\'botble-ecommerce-forms-fronts-auth-login-form\\']/div[4]/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+          }
+        ]
+      },
+      "type": "click",
+      "button": 0
+    },
+    {
+      "description": "open home page",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {},
+      "type": "navigate",
+      "url": "https://nest.botble.com/vi/"
+    },
+    {
+      "description": "click add-to-compare product 1",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {
+        "locators": [
+          {
+            "type": "dom",
+            "value": "document.evaluate(\"(//a[contains(@class,'compare')])[1]\", document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+          }
+        ]
+      },
+      "type": "click",
+      "button": 0
+    },
+    {
+      "description": "click add-to-compare product 2",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {
+        "locators": [
+          {
+            "type": "dom",
+            "value": "document.evaluate(\"(//a[contains(@class,'compare')])[2]\", document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+          }
+        ]
+      },
+      "type": "click",
+      "button": 0
+    },
+    {
+      "description": "open compare page",
+      "wait": {
+        "waitFor": "page_complete"
+      },
+      "target": {},
+      "type": "navigate",
+      "url": "https://nest.botble.com/vi/compare"
+    }
+  ]
 }
