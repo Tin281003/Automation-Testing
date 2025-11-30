@@ -1,0 +1,163 @@
+[
+  {
+    "order": 1,
+    "description": "Mở Trình duyệt, Phóng to cửa sổ và Điều hướng đến URL.",
+    "action": "openBrowser / maximizeWindow / navigateToUrl",
+    "params": [
+      "",
+      "https://nest.botble.com/"
+    ]
+  },
+  {
+    "order": 1.1,
+    "description": "Lưu ID cửa sổ gốc (sử dụng khi đóng).",
+    "action": "saveOriginalWindowHandle",
+    "params": [
+      "originalWindow"
+    ]
+  },
+  {
+    "order": 3,
+    "description": "Tắt Pop-up/Modal (Tùy chọn).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/button_Add_btn-close')",
+      "FailureHandling.OPTIONAL"
+    ]
+  },
+  {
+    "order": 4,
+    "description": "Thêm sản phẩm vào Giỏ hàng bằng JavaScript Click.",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add'))]"
+    ],
+    "workaround": "JavaScript Click"
+  },
+  {
+    "order": 5,
+    "description": "Chuyển đến Checkout từ Mini-Cart bằng JavaScript Click.",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Checkout'))]"
+    ],
+    "workaround": "JavaScript Click"
+  },
+  {
+    "order": 6,
+    "description": "Điền thông tin Người dùng (Tên, Email, Điện thoại).",
+    "action": "setTextSequence",
+    "params": [
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_Login_address_name')", "value": "Tran Van Hien" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_Full Name_address_email')", "value": "hien123@gmail.com" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_land Islands_address_phone')", "value": "334430049" }
+    ]
+  },
+  {
+    "order": 6.1,
+    "description": "Chọn Quốc gia VN và điền Địa chỉ.",
+    "action": "selectOptionByValue / setTextSequence",
+    "params": [
+      { "object": "findTestObject('Object Repository/Page_Checkout/select_Select country.                     _771f1e')", "value": "VN" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_Country_address_state')", "value": "abc" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_State_address_city')", "value": "xyz" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_City_address_address')", "value": "123" }
+    ]
+  },
+  {
+    "order": 7,
+    "description": "Chọn phương thức Thanh toán qua PayPal.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/label_Fast and safe online payment via PayPal')"
+    ]
+  },
+  {
+    "order": 8,
+    "description": "Click Checkout để kích hoạt thanh toán PayPal.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/button_Checkout')"
+    ]
+  },
+  {
+    "order": 9,
+    "description": "XỬ LÝ CHUYỂN ĐỔI CỬA SỔ/TAB (Phân nhánh logic).",
+    "action": "handleMultipleWindows",
+    "condition": "currentWindows > 1",
+    "if_true": {
+      "action": "switchToWindowIndex",
+      "params": [
+        1
+      ],
+      "note": "Chuyển sang cửa sổ Pop-up PayPal."
+    },
+    "if_false": {
+      "action": "comment",
+      "params": [
+        "Trang web đã chuyển hướng trong cùng 1 tab. Tiếp tục tương tác."
+      ]
+    },
+    "note": "Kịch bản chờ 15 giây và sau đó kiểm tra số lượng cửa sổ."
+  },
+  {
+    "order": 10,
+    "description": "Tương tác với trang Đăng nhập PayPal: Nhập Email.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_ng nhp vo ti khon PayPal ca bn/input_VN_email')",
+      "hien123@gmail.com"
+    ]
+  },
+  {
+    "order": 10.1,
+    "description": "Click 'Tiếp theo'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_ng nhp vo ti khon PayPal ca bn/button_Tip theo')"
+    ]
+  },
+  {
+    "order": 10.2,
+    "description": "Nhập Mật khẩu đã mã hóa.",
+    "action": "setEncryptedText",
+    "params": [
+      "findTestObject('Object Repository/Page_ng nhp vo ti khon PayPal ca bn/input_Tip theo_password')",
+      "RigbBhfdqODKcAsiUrg+1Q=="
+    ]
+  },
+  {
+    "order": 10.3,
+    "description": "Click 'Đăng nhập'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_ng nhp vo ti khon PayPal ca bn/button_ng nhp')"
+    ]
+  },
+  {
+    "order": 10.4,
+    "description": "Xác nhận thông báo lỗi đăng nhập (Email/Mật khẩu không khớp).",
+    "action": "waitForElementPresent",
+    "params": [
+      "findTestObject('Object Repository/Page_ng nhp vo ti khon PayPal ca bn/p_Mt s thng tin ca bn khng khp. Vui lng th _df8374')",
+      10
+    ]
+  },
+  {
+    "order": 11,
+    "description": "Kết thúc: Đóng cửa sổ PayPal và quay về cửa sổ gốc (Nếu có Pop-up).",
+    "action": "closeWindow / switchToWindow",
+    "condition": "currentWindows > 1",
+    "params": [
+      "originalWindow"
+    ]
+  },
+  {
+    "order": 11.1,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]

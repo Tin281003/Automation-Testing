@@ -1,0 +1,172 @@
+[
+  {
+    "order": 0,
+    "description": "Định nghĩa hàm hỗ trợ Groovy để thực hiện JavaScript Click (Chuyển đổi thành các bước riêng biệt trong JSON).",
+    "function": "performJSClick(TestObject object)",
+    "note": "Hàm này được chuyển đổi thành các bước 'waitForElementPresent', 'findWebElement' và 'executeJavaScript' tương ứng."
+  },
+  {
+    "order": 1,
+    "description": "Khởi động Trình duyệt, Điều hướng và chờ trang tải xong.",
+    "action": "openBrowser / navigateToUrl / waitForPageLoad",
+    "params": [
+      "",
+      "https://nest.botble.com/",
+      10
+    ]
+  },
+  {
+    "order": 1.1,
+    "description": "Đóng popup quảng cáo (Tùy chọn).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/button_Add_btn-close')",
+      "FailureHandling.OPTIONAL"
+    ]
+  },
+  {
+    "order": 1.2,
+    "description": "Click vào nút 'Add' sản phẩm (SỬ DỤNG JS CLICK).",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add'))]"
+    ],
+    "workaround": "JS Click through performJSClick()"
+  },
+  {
+    "order": 1.3,
+    "description": "Click vào nút 'Checkout' từ Mini-Cart (SỬ DỤNG JS CLICK).",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Checkout'))]"
+    ],
+    "workaround": "JS Click through performJSClick()"
+  },
+  {
+    "order": 2,
+    "description": "Nhập thông tin Người dùng: Họ tên.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Login_address_name')",
+      "Tran Van Hien"
+    ]
+  },
+  {
+    "order": 2.1,
+    "description": "Nhập thông tin Người dùng: Email.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Full Name_address_email')",
+      "hien123@gmail.com"
+    ]
+  },
+  {
+    "order": 2.2,
+    "description": "Nhập thông tin Người dùng: Điện thoại (Đã sửa lỗi nhập liệu).",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_land Islands_address_phone')",
+      "0334430049"
+    ]
+  },
+  {
+    "order": 2.3,
+    "description": "Chọn Quốc gia là Việt Nam ('VN').",
+    "action": "selectOptionByValue",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/select_Select country.                     _771f1e')",
+      "VN",
+      true
+    ]
+  },
+  {
+    "order": 2.4,
+    "description": "Điền Địa chỉ: State/Tỉnh/Thành phố.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Country_address_state')",
+      "abc"
+    ]
+  },
+  {
+    "order": 2.5,
+    "description": "Điền Địa chỉ: City/Quận/Huyện.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_State_address_city')",
+      "xyz"
+    ]
+  },
+  {
+    "order": 2.6,
+    "description": "Điền Địa chỉ: Địa chỉ chi tiết.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_City_address_address')",
+      "123"
+    ]
+  },
+  {
+    "order": 3,
+    "description": "Mở trường nhập Mã Coupon.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/a_You have a coupon code')"
+    ]
+  },
+  {
+    "order": 3.1,
+    "description": "Nhập mã coupon không hợp lệ ('abc').",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Select Coupon_coupon_code')",
+      "abc"
+    ]
+  },
+  {
+    "order": 3.2,
+    "description": "Áp dụng Coupon (SỬ DỤNG JS CLICK).",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Checkout/button_Apply'))]"
+    ],
+    "workaround": "JS Click through performJSClick()"
+  },
+  {
+    "order": 3.3,
+    "description": "Xác nhận thông báo lỗi Coupon không hợp lệ.",
+    "action": "waitForElementPresent",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/span_This coupon code is invalid or has exp_7e6371')",
+      5
+    ]
+  },
+  {
+    "order": 4,
+    "description": "Hoàn thành Checkout (SỬ DỤNG JS CLICK).",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Checkout/button_Checkout'))]"
+    ],
+    "workaround": "JS Click through performJSClick()"
+  },
+  {
+    "order": 4.1,
+    "description": "Xác nhận đơn hàng thành công (Chờ phần tử hiển thị).",
+    "action": "waitForElementVisible",
+    "params": [
+      "findTestObject('Object Repository/Page_Order successfully at Nest - Laravel M_a1bfd4/div_Success')",
+      10
+    ]
+  },
+  {
+    "order": 5,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]
