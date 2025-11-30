@@ -1,0 +1,78 @@
+{
+    "metadata": {
+        "maSinhVien": "VUI_LONG_DIEN_MA_SV",
+        "hoTen": "VUI_LONG_DIEN_HO_TEN",
+        "lab": "Lab7",
+        "chucNangKiemThu": "Đăng nhập, Thêm vào Giỏ hàng và Tăng Số lượng (2 lần)",
+        "website": "https://nest.botble.com/vi",
+        "trangThaiUocTinh": "PASS",
+        "ghiChu": "File này mô tả các bước chính của Test Script Groovy. Vui lòng điền thông tin cá nhân."
+    },
+    "cacBuocScriptChinh": [
+        {
+            "thuTu": 1,
+            "hanhDong": "Mở trình duyệt, phóng to và điều hướng đến trang chủ (phiên bản Tiếng Việt).",
+            "lenhGroovy": "WebUI.openBrowser('') / WebUI.navigateToUrl('https://nest.botble.com/vi')"
+        },
+        {
+            "thuTu": 2,
+            "hanhDong": "Xử lý Popup Quảng cáo (Chờ 12s, click đóng nếu thấy).",
+            "doiTuongKiemThu": "button_Thm_btn-close",
+            "lenhGroovy": "if (WebUI.waitForElementVisible(popupClose, 12, FailureHandling.OPTIONAL)) { WebUI.click(popupClose) }"
+        },
+        {
+            "thuTu": 3,
+            "hanhDong": "Chuyển đến trang Đăng nhập bằng cách click nút 'Tài khoản'.",
+            "doiTuongKiemThu": "span_Ti khon",
+            "lenhGroovy": "WebUI.click(accountBtn)"
+        },
+        {
+            "thuTu": 4,
+            "hanhDong": "Nhập Email ('luannguyenhuuthanh@gmail.com') và Mật khẩu (đã mã hóa), sau đó click 'Ghi nhớ tôi' và 'Đăng nhập'.",
+            "doiTuongKiemThu": "input_Email_email, input_Mt khu_password, input_remember, button_ng nhap",
+            "lenhGroovy": "WebUI.setText(...) & WebUI.setEncryptedText(...) & WebUI.click(rememberMe) & WebUI.click(loginButton)"
+        },
+        {
+            "thuTu": 5,
+            "hanhDong": "Chuyển đến trang Sản phẩm bằng cách click liên kết 'Sản phẩm' sau khi đăng nhập.",
+            "doiTuongKiemThu": "a_Sn phm",
+            "lenhGroovy": "WebUI.click(productLink)"
+        },
+        {
+            "thuTu": 6,
+            "hanhDong": "Thêm sản phẩm vào giỏ hàng (click nút 'Thêm vào giỏ hàng').",
+            "doiTuongKiemThu": "button_Thm vo gi hng",
+            "lenhGroovy": "WebUI.click(addToCartBtn)"
+        },
+        {
+            "thuTu": 7,
+            "hanhDong": "Chuyển đến trang Giỏ hàng bằng cách click liên kết 'Giỏ hàng'.",
+            "doiTuongKiemThu": "span_Gi hng",
+            "lenhGroovy": "WebUI.click(cartLink)"
+        },
+        {
+            "thuTu": 8,
+            "hanhDong": "Tăng số lượng sản phẩm trong giỏ hàng lên 2 lần (Click 2 lần nút tăng số lượng).",
+            "doiTuongKiemThu": "i_...fi-rs-angle-small-up, i_...fi-rs-angle-small-up_1",
+            "lenhGroovy": "WebUI.click(increaseBtn1) / WebUI.delay(1) / WebUI.click(increaseBtn2)"
+        },
+        {
+            "thuTu": 9,
+            "hanhDong": "Đóng trình duyệt.",
+            "lenhGroovy": "WebUI.closeBrowser()"
+        }
+    ],
+    "doiTuongKiemThuSuDungChinh": [
+        "Object Repository/Page_Nest - Tp lnh thng mi in t a nng ca Laravel/button_Thm_btn-close",
+        "Object Repository/Page_Nest - Tp lnh thng mi in t a nng ca Laravel/span_Ti khon",
+        "Object Repository/Page_ng nhp/input_Email_email",
+        "Object Repository/Page_ng nhp/input_Mt khu_password",
+        "Object Repository/Page_ng nhp/input_Mt khu_remember_dc3c99bb4e249a95567a2_45c484",
+        "Object Repository/Page_ng nhp/button_ng nhp",
+        "Object Repository/Page_Thng tin ti khon/a_Sn phm",
+        "Object Repository/Page_Ht ging thay i Quinoa hu c/button_Thm vo gi hng",
+        "Object Repository/Page_Ht ging thay i Quinoa hu c/span_Gi hng",
+        "Object Repository/Page_Gi hng/i_2,026.00_fi-rs-angle-small-up",
+        "Object Repository/Page_Gi hng/i_2,026.00_fi-rs-angle-small-up_1"
+    ]
+}
