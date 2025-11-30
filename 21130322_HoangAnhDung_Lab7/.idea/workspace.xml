@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9841c0eb-bca1-434a-a888-9691422692aa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/21130322_HoangAnhDung_Lab7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/21130322_HoangAnhDung_Lab7/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="593cc953-4e3b-47f1-be73-4e8049d801ba" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -33,10 +23,9 @@
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="3679BCTkqoZzYnbOJlltdOA11Ua" />
+  <component name="ProjectId" id="36D8gKcwdRFQlf4boQiWAAAme8X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -46,8 +35,8 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Intellij Project/Automation-Testing",
+    "git-widget-placeholder": "Dung",
+    "last_opened_file_path": "D:/Intellij Project/Automation-Testing/21130322_HoangAnhDung_Lab7",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,20 +45,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Intellij Project\Automation-Testing" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
-      <module name="Automation-Testing" />
+      <module name="21130322_HoangAnhDung_Lab7" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Automation-Testing" />
+      <module name="21130322_HoangAnhDung_Lab7" />
       <option name="filePath" />
       <method v="2" />
     </configuration>
@@ -84,15 +68,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9841c0eb-bca1-434a-a888-9691422692aa" name="Changes" comment="" />
-      <created>1764346606181</created>
+      <changelist id="593cc953-4e3b-47f1-be73-4e8049d801ba" name="Changes" comment="" />
+      <created>1764529891809</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1764346606181</updated>
-      <workItem from="1764346608917" duration="1518000" />
-      <workItem from="1764529671274" duration="218000" />
-      <workItem from="1764530959787" duration="28000" />
-      <workItem from="1764531152699" duration="49000" />
+      <updated>1764529891809</updated>
+      <workItem from="1764529893092" duration="482000" />
+      <workItem from="1764530989143" duration="161000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,8 @@
+{
+	"configuration": { "device": { "orientation": "landscape", "deviceName": "Desktop" } },
+	"type": "clickpath",
+	"version": "1.0",
+	"events": [
+		{ "description": "open compare page", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/compare" }
+	]
+}
