@@ -1,0 +1,191 @@
+[
+  {
+    "order": 1,
+    "description": "Khởi động Trình duyệt và Điều hướng đến trang web.",
+    "action": "openBrowser",
+    "params": [
+      ""
+    ]
+  },
+  {
+    "order": 1.1,
+    "description": "Điều hướng đến URL chính.",
+    "action": "navigateToUrl",
+    "params": [
+      "https://nest.botble.com/"
+    ]
+  },
+  {
+    "order": 2,
+    "description": "Tắt cửa sổ Pop-up (Modal lớn).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/button_Add_btn-close')",
+      "FailureHandling.OPTIONAL"
+    ]
+  },
+  {
+    "order": 2.1,
+    "description": "Chờ trang tải xong (trước khi chạy JavaScript).",
+    "action": "waitForPageLoad",
+    "params": [
+      10
+    ]
+  },
+  {
+    "order": 2.2,
+    "description": "Ẩn SITE NOTICE bằng JavaScript.",
+    "action": "executeJavaScript",
+    "params": [
+      "document.getElementsByClassName(\"site-notice__inner\")[0].style.display=\"none\";",
+      "null"
+    ],
+    "workaround": "JavaScript Injection"
+  },
+  {
+    "order": 3,
+    "description": "Cuộn đến nút 'Add' sản phẩm.",
+    "action": "scrollToElement",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add')",
+      5
+    ]
+  },
+  {
+    "order": 3.1,
+    "description": "Chờ nút 'Add' có thể click được.",
+    "action": "waitForElementClickable",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add')",
+      10
+    ]
+  },
+  {
+    "order": 3.2,
+    "description": "Thêm sản phẩm vào giỏ hàng.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add')"
+    ]
+  },
+  {
+    "order": 4,
+    "description": "Mở Giỏ hàng/Chuyển đến trang Shopping Cart (click vào biểu tượng giỏ hàng).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/div_All CategoriesAll CategoriesMilks and D_8f9977')"
+    ]
+  },
+  {
+    "order": 5,
+    "description": "Chờ trang Giỏ hàng tải xong.",
+    "action": "waitForPageLoad",
+    "params": [
+      10
+    ]
+  },
+  {
+    "order": "5a-5d",
+    "description": "KHẮC PHỤC LỖI CHECKOUT: Giải quyết lỗi bằng cách tìm WebElement thực tế và dùng JavaScript để buộc click.",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Shopping Cart/a_Checkout'))]"
+    ],
+    "workaround": "JavaScript Force Click (WebElement Resolution)"
+  },
+  {
+    "order": 6,
+    "description": "Chờ trang Checkout tải xong.",
+    "action": "waitForPageLoad",
+    "params": [
+      10
+    ]
+  },
+  {
+    "order": 6.1,
+    "description": "Điền Họ tên Người nhận.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Login_address_name')",
+      "Tran Van Hien"
+    ]
+  },
+  {
+    "order": 6.2,
+    "description": "Điền Email.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Full Name_address_email')",
+      "hien123@gmail.com"
+    ]
+  },
+  {
+    "order": 6.3,
+    "description": "Điền Số điện thoại.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_land Islands_address_phone')",
+      "33344330049"
+    ]
+  },
+  {
+    "order": 7,
+    "description": "Chọn Quốc gia là Việt Nam ('VN') bằng Value.",
+    "action": "selectOptionByValue",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/select_Select country.                     _771f1e')",
+      "VN",
+      true
+    ]
+  },
+  {
+    "order": 8.1,
+    "description": "Điền Tỉnh/Thành phố (State).",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Country_address_state')",
+      "abc"
+    ]
+  },
+  {
+    "order": 8.2,
+    "description": "Điền Quận/Huyện (City).",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_State_address_city')",
+      "xyz"
+    ]
+  },
+  {
+    "order": 8.3,
+    "description": "Điền Địa chỉ chi tiết (Address).",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_City_address_address')",
+      "123"
+    ]
+  },
+  {
+    "order": 11,
+    "description": "Chấp nhận Điều khoản & Điều kiện.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/div_By placing an order, you agree to our T_2111d3')"
+    ]
+  },
+  {
+    "order": 12,
+    "description": "Hoàn tất Thanh toán (Nhấn nút Checkout cuối cùng).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/button_Checkout')"
+    ]
+  },
+  {
+    "order": 13,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]

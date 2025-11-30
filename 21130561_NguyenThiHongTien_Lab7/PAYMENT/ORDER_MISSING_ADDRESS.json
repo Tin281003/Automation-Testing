@@ -1,0 +1,140 @@
+[
+  {
+    "order": 0,
+    "description": "Định nghĩa biến Mật khẩu rõ ràng và Mật khẩu mã hóa (Sử dụng mật khẩu rõ ràng trong JS).",
+    "variable": "PLAIN_PASSWORD",
+    "value": "TestPassword123"
+  },
+  {
+    "order": 1,
+    "description": "Khởi động Trình duyệt và chờ ổn định.",
+    "action": "openBrowser",
+    "params": [
+      ""
+    ]
+  },
+  {
+    "order": 1.1,
+    "description": "Chờ Driver ổn định sau khi mở trình duyệt.",
+    "action": "waitForPageLoad",
+    "params": [
+      5
+    ]
+  },
+  {
+    "order": 1.2,
+    "description": "Điều hướng đến URL chính.",
+    "action": "navigateToUrl",
+    "params": [
+      "https://nest.botble.com/"
+    ]
+  },
+  {
+    "order": 2,
+    "description": "Tắt Pop-up/Modal (Nếu có).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/button_Add_btn-close')",
+      "FailureHandling.OPTIONAL"
+    ]
+  },
+  {
+    "order": 3,
+    "description": "THÊM SẢN PHẨM: Cuộn, chờ và buộc click nút 'Add' bằng JavaScript.",
+    "action": "executeJavaScript",
+    "steps": [
+      "WebUI.scrollToElement(addButton, 5)",
+      "WebUI.waitForElementPresent(addButton, 10)"
+    ],
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Add'))]"
+    ],
+    "workaround": "JavaScript Force Click (Add to Cart)"
+  },
+  {
+    "order": 4,
+    "description": "CHUYỂN ĐẾN CHECKOUT: Chờ và buộc click nút 'Checkout' trong Mini-Cart bằng JavaScript.",
+    "action": "executeJavaScript",
+    "steps": [
+      "WebUI.waitForElementClickable(checkoutObjectMiniCart, 10)"
+    ],
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Nest - Laravel Multipurpose eCommerce Script/a_Checkout'))]"
+    ],
+    "workaround": "JavaScript Force Click (Mini-Cart Checkout)"
+  },
+  {
+    "order": 5,
+    "description": "ĐIỀN THÔNG TIN: Chờ trang Checkout tải xong và điền Họ tên, Email, Số điện thoại.",
+    "action": "setTextSequence",
+    "steps": [
+      "WebUI.waitForPageLoad(10)",
+      "WebUI.setText(name, 'Tran Van Hien')",
+      "WebUI.setText(email, 'hien123@gmail.com')",
+      "WebUI.setText(phone, '334430049')"
+    ],
+    "params": [
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_Login_address_name')", "value": "Tran Van Hien" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_Full Name_address_email')", "value": "hien123@gmail.com" },
+      { "object": "findTestObject('Object Repository/Page_Checkout/input_land Islands_address_phone')", "value": "334430049" }
+    ]
+  },
+  {
+    "order": 5.1,
+    "description": "Chọn Quốc gia là Việt Nam ('VN').",
+    "action": "selectOptionByValue",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/select_Select country.                     _771f1e')",
+      "VN",
+      true
+    ]
+  },
+  {
+    "order": 6,
+    "description": "Kích hoạt nút 'Register an account'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/input_Address_create_account')"
+    ]
+  },
+  {
+    "order": 6.1,
+    "description": "ĐIỀN MẬT KHẨU: Chờ hiển thị, cuộn tới và buộc nhập Mật khẩu/Xác nhận Mật khẩu bằng JavaScript.",
+    "action": "executeJavaScript",
+    "steps": [
+      "WebUI.waitForElementVisible(passwordInput, 10)",
+      "WebUI.scrollToElement(passwordInput, 2)"
+    ],
+    "params": [
+      "arguments[0].value = 'TestPassword123';",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Checkout/input_Register an account with above inform_3b85ff'))]"
+    ],
+    "workaround": "JavaScript Force Set Value (Password)"
+  },
+  {
+    "order": 6.2,
+    "description": "Buộc nhập giá trị cho trường Xác nhận Mật khẩu bằng JavaScript.",
+    "action": "executeJavaScript",
+    "params": [
+      "arguments[0].value = 'TestPassword123';",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Checkout/input_Password_password-confirm'))]"
+    ],
+    "workaround": "JavaScript Force Set Value (Confirm Password)"
+  },
+  {
+    "order": 7,
+    "description": "Hoàn tất Đơn hàng (Nhấn nút Checkout cuối cùng).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Checkout/button_Checkout')"
+    ]
+  },
+  {
+    "order": 8,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]

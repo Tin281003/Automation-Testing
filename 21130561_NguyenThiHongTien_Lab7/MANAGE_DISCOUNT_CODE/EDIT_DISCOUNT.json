@@ -1,0 +1,95 @@
+[
+  {
+    "order": 1,
+    "description": "Khởi động Trình duyệt và Điều hướng đến trang Đăng nhập Admin.",
+    "action": "openBrowser / navigateToUrl",
+    "params": [
+      "",
+      "https://nest.botble.com/admin/login"
+    ]
+  },
+  {
+    "order": 2,
+    "description": "ĐĂNG NHẬP: Nhập Username/Email và Mật khẩu đã mã hóa.",
+    "action": "setText / setEncryptedText",
+    "params": [
+      { "object": "findTestObject('Object Repository/Page_Admin Botble Technologies/input_EmailUsername_username')", "value": "admin" },
+      { "object": "findTestObject('Object Repository/Page_Admin Botble Technologies/input_Lost your password_password')", "encryptedValue": "RigbBhfdqOBGNlJIWM1ClA==" }
+    ]
+  },
+  {
+    "order": 2.1,
+    "description": "ĐĂNG NHẬP: Click nút 'Sign in'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Admin Botble Technologies/button_Sign in')"
+    ]
+  },
+  {
+    "order": 3,
+    "description": "ĐIỀU HƯỚNG: Click vào Menu cha 'Ecommerce'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Dashboard Botble Technologies/a_Ecommerce 23')"
+    ]
+  },
+  {
+    "order": 3.1,
+    "description": "ĐIỀU HƯỚNG: Click vào Menu con 'Discounts'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Dashboard Botble Technologies/span_Discounts')"
+    ]
+  },
+  {
+    "order": 4,
+    "description": "CHỈNH SỬA DISCOUNT: Chờ và Click vào icon Edit.",
+    "action": "click",
+    "object": "findTestObject('Object Repository/Page_Discounts Botble Technologies/svg__icon svg-icon-ti-ti-edit')",
+    "fallback_action": "executeJavaScript",
+    "note": "Sử dụng JS Click nếu click thường gặp lỗi.",
+    "params": [
+      "findTestObject('Object Repository/Page_Discounts Botble Technologies/svg__icon svg-icon-ti-ti-edit')"
+    ]
+  },
+  {
+    "order": 5,
+    "description": "THỰC HIỆN CHỈNH SỬA: Đổi mã Coupon mới.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Edit discount Botble Technologies/input_Create coupon code_code')",
+      "XWAFU6LRPOOP12"
+    ]
+  },
+  {
+    "order": 5.1,
+    "description": "THỰC HIỆN CHỈNH SỬA: Đảm bảo click vào 'End date_unlimited_time' (để kích hoạt/bỏ kích hoạt nếu cần).",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Edit discount Botble Technologies/input_End date_unlimited_time')"
+    ]
+  },
+  {
+    "order": 6,
+    "description": "LƯU VÀ XÁC NHẬN: Click nút 'Save'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Edit discount Botble Technologies/button_Save')"
+    ]
+  },
+  {
+    "order": 6.1,
+    "description": "LƯU VÀ XÁC NHẬN: Xác nhận thông báo 'Updated successfully' hiển thị.",
+    "action": "waitForElementVisible",
+    "params": [
+      "findTestObject('Object Repository/Page_Edit discount Botble Technologies/span_Updated successfully')",
+      10
+    ]
+  },
+  {
+    "order": 7,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "order": 1,
+    "description": "Khởi động Trình duyệt và Điều hướng đến trang Đăng nhập Admin.",
+    "action": "openBrowser / navigateToUrl",
+    "params": [
+      "",
+      "https://nest.botble.com/admin/login"
+    ]
+  },
+  {
+    "order": 2,
+    "description": "ĐĂNG NHẬP: Nhập Username/Email và Mật khẩu đã mã hóa.",
+    "action": "setText / setEncryptedText",
+    "params": [
+      { "object": "findTestObject('Object Repository/Page_Admin Botble Technologies/input_EmailUsername_username')", "value": "admin" },
+      { "object": "findTestObject('Object Repository/Page_Admin Botble Technologies/input_Lost your password_password')", "encryptedValue": "RigbBhfdqOBGNlJIWM1ClA==" }
+    ]
+  },
+  {
+    "order": 2.1,
+    "description": "ĐĂNG NHẬP: Click nút 'Sign in'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Admin Botble Technologies/button_Sign in')"
+    ]
+  },
+  {
+    "order": 3,
+    "description": "Điều hướng đến Discounts (Sử dụng Try-Catch và JS Force Click làm giải pháp dự phòng).",
+    "action": "click",
+    "object": "findTestObject('Object Repository/Page_Dashboard Botble Technologies/span_Discounts')",
+    "fallback_action": "executeJavaScript",
+    "note": "Nếu click thường thất bại, dùng JS Force Click.",
+    "params": [
+      "findTestObject('Object Repository/Page_Dashboard Botble Technologies/span_Discounts')"
+    ]
+  },
+  {
+    "order": 4,
+    "description": "TẠO DISCOUNT: Click nút 'Create'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Discounts Botble Technologies/span_Create')"
+    ]
+  },
+  {
+    "order": 4.1,
+    "description": "TẠO DISCOUNT: Nhập Coupon code 'SUMMER20'.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Create discount Botble Technologies/input_Create coupon code_code')",
+      "SUMMER20"
+    ]
+  },
+  {
+    "order": 4.2,
+    "description": "TẠO DISCOUNT: Chọn loại giảm giá 'Percentage discount'.",
+    "action": "selectOptionByValue",
+    "params": [
+      "findTestObject('Object Repository/Page_Create discount Botble Technologies/select_Percentage discount ()Free shippingS_df6a97')",
+      "percentage",
+      true
+    ]
+  },
+  {
+    "order": 4.3,
+    "description": "TẠO DISCOUNT: Nhập Giá trị giảm giá '20'.",
+    "action": "setText",
+    "params": [
+      "findTestObject('Object Repository/Page_Create discount Botble Technologies/input_Discount_value')",
+      "20"
+    ]
+  },
+  {
+    "order": 5,
+    "description": "THIẾT LẬP THỜI GIAN: Bỏ chọn 'Unlimited time'.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Create discount Botble Technologies/input_End date_unlimited_time')"
+    ]
+  },
+  {
+    "order": 5.1,
+    "description": "Chọn NGÀY BẮT ĐẦU: Click mở Date Picker và buộc click chọn 'ngày 28' bằng JavaScript.",
+    "action": "executeJavaScript",
+    "steps": [
+      "WebUI.click(findTestObject('Object Repository/Page_Create discount Botble Technologies/input_Start date_start_date'))"
+    ],
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Create discount Botble Technologies/span_28'))]"
+    ],
+    "workaround": "JavaScript Force Click (Start Date)"
+  },
+  {
+    "order": 5.2,
+    "description": "Chọn NGÀY KẾT THÚC: Click mở Date Picker và buộc click chọn 'ngày 28' (End Date Object) bằng JavaScript.",
+    "action": "executeJavaScript",
+    "steps": [
+      "WebUI.click(findTestObject('Object Repository/Page_Create discount Botble Technologies/input_End date_end_date'))"
+    ],
+    "params": [
+      "arguments[0].click();",
+      "[WebUI.findWebElement(findTestObject('Object Repository/Page_Create discount Botble Technologies/span_28_1'))]"
+    ],
+    "workaround": "JavaScript Force Click (End Date)"
+  },
+  {
+    "order": 6,
+    "description": "Lưu Discount.",
+    "action": "click",
+    "params": [
+      "findTestObject('Object Repository/Page_Create discount Botble Technologies/button_Save')"
+    ]
+  },
+  {
+    "order": 7,
+    "description": "Đóng Trình duyệt.",
+    "action": "closeBrowser",
+    "params": []
+  }
+]
