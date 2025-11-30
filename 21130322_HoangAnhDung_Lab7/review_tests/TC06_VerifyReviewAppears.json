@@ -1,0 +1,16 @@
+{
+	"configuration": { "device": { "orientation": "landscape", "deviceName": "Desktop" } },
+	"type": "clickpath",
+	"version": "1.0",
+	"events": [
+		{ "description": "navigate to login", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/login" },
+		{ "description": "type email", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#email" }] }, "type": "keystrokes", "textValue": "dung@gmail.com", "simulateBlurEvent": true, "masked": false },
+		{ "description": "type password", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#password" }] }, "type": "keystrokes", "textValue": "123456", "simulateBlurEvent": true, "masked": false },
+		{ "description": "click login", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "dom", "value": "document.evaluate('//form[@id=\\'botble-ecommerce-forms-fronts-auth-login-form\\']/div[4]/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()" }] }, "type": "click", "button": 0 },
+		{ "description": "open product page", "wait": { "waitFor": "page_complete" }, "target": {}, "type": "navigate", "url": "https://nest.botble.com/vi/products/angies-boomchickapop-sweet-salty-kettle-corn" },
+		{ "description": "open reviews tab", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#Reviews-tab" }] }, "type": "click", "button": 0 },
+		{ "description": "type comment (auto)", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "[name=\\\"comment\\\"]" }] }, "type": "keystrokes", "textValue": "E2E Auto comment", "simulateBlurEvent": true, "masked": false },
+		{ "description": "click 5-star", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "css", "value": "#rating-star-5" }] }, "type": "click", "button": 0 },
+		{ "description": "click submit review", "wait": { "waitFor": "page_complete" }, "target": { "locators": [{ "type": "dom", "value": "document.evaluate('//div[@id=\\'Reviews\\']/div/div/div[2]/form/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()" }] }, "type": "click", "button": 0 }
+	]
+}
