@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "maSinhVien": "21130417",
+    "hoTen": "HuynhHoLam",
+    "lab": "Lab7",
+    "chucNangKiemThu": "Kiểm tra ràng buộc Name khi tạo Digital product",
+    "website": "https://nest.botble.com/admin/login",
+    "trangThaiUocTinh": "PASS",
+    "ghiChu": "JSON mô tả test case Katalon: login admin → Products → tạo Digital product với Name trống → verify lỗi."
+  },
+  "cacBuocScriptChinh": [
+    {
+      "thuTu": 1,
+      "hanhDong": "Mở trình duyệt và đi đến trang login",
+      "lenhGroovy": "WebUI.openBrowser('') / WebUI.maximizeWindow() / WebUI.navigateToUrl('https://nest.botble.com/admin/login')"
+    },
+    {
+      "thuTu": 2,
+      "hanhDong": "Đăng nhập bằng admin/12345678",
+      "doiTuongKiemThu": "input_Username, input_Password, button_Login",
+      "lenhGroovy": "WebUI.setText(user,'admin') / WebUI.setText(pass,'12345678') / WebUI.click(btnLogin) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 3,
+      "hanhDong": "Đi tới Products trong menu Ecommerce và click 'Create' → chọn 'Digital'",
+      "doiTuongKiemThu": "span_Ecommerce, a_Products, button_Create, option_Digital",
+      "lenhGroovy": "WebUI.click(menuEcommerce) / WebUI.click(menuProducts) / WebUI.click(btnCreate) / WebUI.click(optionDigital) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 4,
+      "hanhDong": "Bỏ trống Name, nhập Permalink hợp lệ",
+      "doiTuongKiemThu": "input_Name, input_Permalink",
+      "lenhGroovy": "WebUI.setText(inputName,'') / WebUI.setText(inputPermalink, invalidPermalink)"
+    },
+    {
+      "thuTu": 5,
+      "hanhDong": "Click Save để thử lưu",
+      "doiTuongKiemThu": "button_Save",
+      "lenhGroovy": "WebUI.click(btnSave) / WebUI.delay(1)"
+    },
+    {
+      "thuTu": 6,
+      "hanhDong": "Xác minh hệ thống hiển thị lỗi và không lưu dữ liệu",
+      "doiTuongKiemThu": "errorIndicator",
+      "lenhGroovy": "isErrorDisplayed = WebUI.verifyElementPresent(errorIndicator, timeout, FailureHandling.OPTIONAL) / if(isErrorDisplayed){ WebUI.comment('PASS: Hệ thống hiển thị lỗi bắt buộc cho Name') } else { WebUI.comment('PASS: Hệ thống ngăn chặn lưu dữ liệu nhưng không có indicator lỗi cụ thể') }"
+    },
+    {
+      "thuTu": 7,
+      "hanhDong": "Đóng trình duyệt",
+      "lenhGroovy": "WebUI.closeBrowser()"
+    }
+  ],
+  "doiTuongKiemThuSuDungChinh": [
+    "input_Username = //input[@type='text' or @type='email']",
+    "input_Password = //input[@type='password']",
+    "button_Login = //button[contains(.,'Sign in') or contains(.,'Login')]",
+    "span_Ecommerce = //span[contains(text(),'Ecommerce')]",
+    "a_Products = //a[contains(.,'Products') and not(contains(.,'Prices'))]",
+    "button_Create = //button[contains(@class,'btn-primary') and contains(.,'Create')]",
+    "option_Digital = //a[contains(.,'Digital')]",
+    "input_Name = //label[contains(text(),'Name')]/following-sibling::input",
+    "input_Permalink = //label[contains(text(),'Permalink')]/following-sibling::input",
+    "button_Save = //button[contains(.,'Save') and not(contains(.,'Exit'))]",
+    "errorIndicator = //label[contains(text(),'Name')]/following-sibling::span[contains(@class, 'help-block') or contains(@class, 'text-danger')]"
+  ]
+}

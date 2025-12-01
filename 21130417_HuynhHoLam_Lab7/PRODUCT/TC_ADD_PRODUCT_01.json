@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "maSinhVien": "21130417",
+    "hoTen": "HuynhHoLam",
+    "lab": "Lab7",
+    "chucNangKiemThu": "Tạo sản phẩm kỹ thuật số mới 'táo'",
+    "website": "https://nest.botble.com/admin/login",
+    "trangThaiUocTinh": "PASS",
+    "ghiChu": "JSON mô tả test case Katalon: login admin → Products → tạo Digital product 'táo' → verify."
+  },
+  "cacBuocScriptChinh": [
+    {
+      "thuTu": 1,
+      "hanhDong": "Mở trình duyệt và vào trang đăng nhập Admin",
+      "lenhGroovy": "WebUI.openBrowser('') / WebUI.maximizeWindow() / WebUI.navigateToUrl('https://nest.botble.com/admin/login')"
+    },
+    {
+      "thuTu": 2,
+      "hanhDong": "Đăng nhập bằng admin/12345678",
+      "doiTuongKiemThu": "input_Username, input_Password, button_Login",
+      "lenhGroovy": "WebUI.setText(user,'admin') / WebUI.setText(pass,'12345678') / WebUI.click(btnLogin) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 3,
+      "hanhDong": "Đi tới danh sách Products trong menu Ecommerce",
+      "doiTuongKiemThu": "span_Ecommerce, a_Products",
+      "lenhGroovy": "WebUI.click(menuEcommerce) / WebUI.click(menuProducts) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 4,
+      "hanhDong": "Click 'Create' → chọn 'Digital'",
+      "doiTuongKiemThu": "button_Create, option_Digital",
+      "lenhGroovy": "WebUI.click(btnCreate) / WebUI.click(optionDigital) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 5,
+      "hanhDong": "Nhập Name = 'táo' và Permalink = 'tao'",
+      "doiTuongKiemThu": "input_Name, input_Permalink",
+      "lenhGroovy": "WebUI.setText(inputName, productNameValue) / WebUI.setText(inputPermalink, permalinkValue)"
+    },
+    {
+      "thuTu": 6,
+      "hanhDong": "Lưu sản phẩm và thoát",
+      "doiTuongKiemThu": "button_SaveExit",
+      "lenhGroovy": "WebUI.click(btnSaveExit) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 7,
+      "hanhDong": "Xác minh sản phẩm 'táo' đã được tạo",
+      "doiTuongKiemThu": "productInList",
+      "lenhGroovy": "isCreated = WebUI.verifyElementPresent(productInList, timeout, FailureHandling.OPTIONAL) / if(isCreated) { WebUI.comment('PASS: Sản phẩm táo được tạo') } else { WebUI.comment('FAIL: Sản phẩm táo không được tạo') }"
+    },
+    {
+      "thuTu": 8,
+      "hanhDong": "Đóng trình duyệt",
+      "lenhGroovy": "WebUI.closeBrowser()"
+    }
+  ],
+  "doiTuongKiemThuSuDungChinh": [
+    "input_Username = //input[@type='text' or @type='email']",
+    "input_Password = //input[@type='password']",
+    "button_Login = //button[contains(.,'Sign in') or contains(.,'Login')]",
+    "span_Ecommerce = //span[contains(text(),'Ecommerce')]",
+    "a_Products = //a[contains(.,'Products') and not(contains(.,'Prices'))]",
+    "button_Create = //button[contains(@class,'btn-primary') and contains(.,'Create')]",
+    "option_Digital = //a[contains(.,'Digital')]",
+    "input_Name = //label[contains(text(),'Name')]/following-sibling::input",
+    "input_Permalink = //label[contains(text(),'Permalink')]/following-sibling::input",
+    "button_SaveExit = //button[contains(.,'Save & Exit')]",
+    "productInList = //table//td//a[contains(text(),'táo')]"
+  ]
+}

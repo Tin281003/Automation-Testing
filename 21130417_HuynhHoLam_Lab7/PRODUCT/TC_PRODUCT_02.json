@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "maSinhVien": "21130417",
+    "hoTen": "HuynhHoLam",
+    "lab": "Lab7",
+    "chucNangKiemThu": "Tìm kiếm sản phẩm",
+    "website": "https://nest.botble.com/admin/login",
+    "trangThaiUocTinh": "PASS",
+    "ghiChu": "JSON mô tả test case Katalon: login admin → Products → search 'Banana' → verify 'Colorful Banana' xuất hiện."
+  },
+  "cacBuocScriptChinh": [
+    {
+      "thuTu": 1,
+      "hanhDong": "Mở trình duyệt và đi đến trang login",
+      "lenhGroovy": "WebUI.openBrowser('') / WebUI.maximizeWindow() / WebUI.navigateToUrl('https://nest.botble.com/admin/login')"
+    },
+    {
+      "thuTu": 2,
+      "hanhDong": "Đăng nhập bằng admin/12345678",
+      "doiTuongKiemThu": "input_Username, input_Password, button_Login",
+      "lenhGroovy": "WebUI.setText(user,'admin') / WebUI.setText(pass,'12345678') / WebUI.click(btnLogin) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 3,
+      "hanhDong": "Đi tới Products trong menu Ecommerce",
+      "doiTuongKiemThu": "span_Ecommerce, a_Products",
+      "lenhGroovy": "WebUI.click(menuEcommerce) / WebUI.click(menuProducts) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 4,
+      "hanhDong": "Tìm kiếm sản phẩm với từ khóa 'Banana'",
+      "doiTuongKiemThu": "input_Search",
+      "lenhGroovy": "WebUI.setText(searchInput,searchKeyword) / WebUI.sendKeys(searchInput, Keys.ENTER) / WebUI.delay(2)"
+    },
+    {
+      "thuTu": 5,
+      "hanhDong": "Xác minh sản phẩm 'Colorful Banana' xuất hiện",
+      "doiTuongKiemThu": "productInList",
+      "lenhGroovy": "WebUI.verifyElementPresent(productInList, timeout) / WebUI.comment('THÀNH CÔNG: Sản phẩm \"Colorful Banana\" đã được tìm thấy')"
+    },
+    {
+      "thuTu": 6,
+      "hanhDong": "Đóng trình duyệt",
+      "lenhGroovy": "WebUI.closeBrowser()"
+    }
+  ],
+  "doiTuongKiemThuSuDungChinh": [
+    "input_Username = //input[@type='text' or @type='email']",
+    "input_Password = //input[@type='password']",
+    "button_Login = //button[contains(.,'Sign in') or contains(.,'Login')]",
+    "span_Ecommerce = //span[contains(text(),'Ecommerce')]",
+    "a_Products = //a[contains(.,'Products') and not(contains(.,'Prices'))]",
+    "input_Search = //input[@placeholder='Search']",
+    "productInList = //table//td//a[contains(text(),'Colorful Banana')]"
+  ]
+}

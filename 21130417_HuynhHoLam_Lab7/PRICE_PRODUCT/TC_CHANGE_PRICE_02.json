@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "maSinhVien": "21130417",
+    "hoTen": "HuynhHoLam",
+    "lab": "Lab7",
+    "chucNangKiemThu": "Login Admin và thay đổi giá sản phẩm ID 56",
+    "website": "https://nest.botble.com/admin/login",
+    "trangThaiUocTinh": "PASS",
+    "ghiChu": "JSON mô tả test case Katalon: login admin → Product Prices → chỉnh giá ID 2 → verify."
+  },
+  "cacBuocScriptChinh": [
+    {
+      "thuTu": 1,
+      "hanhDong": "Mở trình duyệt, phóng to và vào trang đăng nhập Admin",
+      "lenhGroovy": "WebUI.openBrowser('') / WebUI.maximizeWindow() / WebUI.navigateToUrl('https://nest.botble.com/admin/login')"
+    },
+    {
+      "thuTu": 2,
+      "hanhDong": "Nhập Username = admin và Password = 12345678",
+      "doiTuongKiemThu": "input_Username, input_Password",
+      "lenhGroovy": "WebUI.setText(user,'admin') / WebUI.setText(pass,'12345678')"
+    },
+    {
+      "thuTu": 3,
+      "hanhDong": "Click Login để đăng nhập",
+      "doiTuongKiemThu": "button_Login",
+      "lenhGroovy": "WebUI.click(btnLogin) / WebUI.waitForPageLoad(timeout)"
+    },
+    {
+      "thuTu": 4,
+      "hanhDong": "Đi tới menu Ecommerce → Product Prices",
+      "doiTuongKiemThu": "span_Ecommerce, a_ProductPrices",
+      "lenhGroovy": "WebUI.click(menuEcommerce) / WebUI.click(productPrices)"
+    },
+    {
+      "thuTu": 5,
+      "hanhDong": "Chọn input Price và Sale Price của sản phẩm ID 56",
+      "doiTuongKiemThu": "input_Price, input_SalePrice",
+      "lenhGroovy": "priceInput = //tr[td[contains(text(),'56')]]//input[@placeholder='Price'] / saleInput = //tr[td[contains(text(),'56')]]//input[@placeholder='Price Sale']"
+    },
+    {
+      "thuTu": 6,
+      "hanhDong": "Chỉnh Price = 3500 và Sale Price = 3000 bằng JavaScript",
+      "doiTuongKiemThu": "input_Price, input_SalePrice",
+      "lenhGroovy": "WebUI.executeJavaScript(\"arguments[0].click(); arguments[0].value='3500';\", Arrays.asList(WebUI.findWebElement(priceInput, timeout))) / WebUI.executeJavaScript(\"arguments[0].click(); arguments[0].value='3000';\", Arrays.asList(WebUI.findWebElement(saleInput, timeout)))"
+    },
+    {
+      "thuTu": 7,
+      "hanhDong": "Click Reload để áp dụng thay đổi",
+      "doiTuongKiemThu": "button_Reload",
+      "lenhGroovy": "WebUI.click(reload) / WebUI.delay(2)"
+    },
+    {
+      "thuTu": 8,
+      "hanhDong": "Verify giá Price và Sale Price đã được cập nhật",
+      "doiTuongKiemThu": "input_Price, input_SalePrice",
+      "lenhGroovy": "WebUI.verifyElementAttributeValue(priceInput,'value','3500',3) / WebUI.verifyElementAttributeValue(saleInput,'value','3000',3)"
+    },
+    {
+      "thuTu": 9,
+      "hanhDong": "Đóng trình duyệt",
+      "lenhGroovy": "WebUI.closeBrowser()"
+    }
+  ],
+  "doiTuongKiemThuSuDungChinh": [
+    "input_Username = //input[@type='text' or @type='email']",
+    "input_Password = //input[@type='password']",
+    "button_Login = //button[contains(.,'Sign in') or contains(.,'Login')]",
+    "span_Ecommerce = //span[contains(text(),'Ecommerce')]",
+    "a_ProductPrices = //a[contains(.,'Product Prices')]",
+    "input_Price = //tr[td[contains(text(),'56')]]//input[@placeholder='Price']",
+    "input_SalePrice = //tr[td[contains(text(),'56')]]//input[@placeholder='Price Sale']",
+    "button_Reload = //button[contains(.,'Reload')]"
+  ]
+}

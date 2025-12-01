@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "maSinhVien": "21130417",
+    "hoTen": "HuynhHoLam",
+    "lab": "Lab7",
+    "chucNangKiemThu": "Kiểm tra lỗi khi Giá Sale > Giá gốc sản phẩm ID 56",
+    "website": "https://nest.botble.com/admin/login",
+    "trangThaiUocTinh": "PASS",
+    "ghiChu": "JSON mô tả test case tiêu cực: nhập Giá Sale cao hơn Giá gốc → kiểm tra thông báo lỗi."
+  },
+  "cacBuocScriptChinh": [
+    {
+      "thuTu": 1,
+      "hanhDong": "Chọn input Price và Sale Price của sản phẩm ID 56",
+      "doiTuongKiemThu": "input_Price, input_SalePrice",
+      "lenhGroovy": "priceInput = //tr[td[contains(text(),'56')]]//input[@placeholder='Price'] / saleInput = //tr[td[contains(text(),'56')]]//input[@placeholder='Price Sale']"
+    },
+    {
+      "thuTu": 2,
+      "hanhDong": "Nhập Giá gốc = 2000",
+      "doiTuongKiemThu": "input_Price",
+      "lenhGroovy": "WebUI.executeJavaScript(\"arguments[0].value='2000';\", Arrays.asList(WebUI.findWebElement(priceInput, timeout)))"
+    },
+    {
+      "thuTu": 3,
+      "hanhDong": "Nhập Giá Sale = 2500 (cao hơn Giá gốc)",
+      "doiTuongKiemThu": "input_SalePrice",
+      "lenhGroovy": "WebUI.executeJavaScript(\"arguments[0].value='2500';\", Arrays.asList(WebUI.findWebElement(saleInput, timeout)))"
+    },
+    {
+      "thuTu": 4,
+      "hanhDong": "Click Reload để áp dụng thay đổi và kích hoạt validation",
+      "doiTuongKiemThu": "button_Reload",
+      "lenhGroovy": "WebUI.click(reload) / WebUI.delay(2)"
+    },
+    {
+      "thuTu": 5,
+      "hanhDong": "Xác minh thông báo lỗi khi Giá Sale > Giá gốc",
+      "doiTuongKiemThu": "div_ErrorMessage",
+      "lenhGroovy": "isErrorDisplayed = WebUI.verifyElementPresent(errorMessage, timeout, FailureHandling.OPTIONAL) / if(isErrorDisplayed) { WebUI.comment('PASS: Hệ thống hiển thị thông báo lỗi') } else { WebUI.verifyElementAttributeValue(saleInput,'value','2500',3,FailureHandling.OPTIONAL) / WebUI.comment('FAIL: Hệ thống cho phép lưu Giá Sale cao hơn Giá Price') }"
+    },
+    {
+      "thuTu": 6,
+      "hanhDong": "Đóng trình duyệt",
+      "lenhGroovy": "WebUI.closeBrowser()"
+    }
+  ],
+  "doiTuongKiemThuSuDungChinh": [
+    "input_Price = //tr[td[contains(text(),'56')]]//input[@placeholder='Price']",
+    "input_SalePrice = //tr[td[contains(text(),'56')]]//input[@placeholder='Price Sale']",
+    "button_Reload = //button[contains(.,'Reload')]",
+    "div_ErrorMessage = //div[@role='alert' or contains(@class, 'alert-danger') or contains(text(), 'Price sale cannot be higher')]"
+  ]
+}
