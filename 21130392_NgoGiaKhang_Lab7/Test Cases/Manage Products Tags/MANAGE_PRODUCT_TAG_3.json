@@ -1,0 +1,57 @@
+[
+  {
+    "command": "open",
+    "target": "https://nest.botble.com/admin/login",
+    "value": ""
+  },
+  {
+    "command": "type",
+    "target": "id=username",
+    "value": "admin"
+  },
+  {
+    "command": "type",
+    "target": "id=password",
+    "value": "RigbBhfdqOBGNlJIWM1ClA=="
+  },
+  {
+    "command": "click",
+    "target": "xpath=//form[@id='botble-a-c-l-forms-auth-login-form']/div/div[3]",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "id=cms-plugins-ecommerce",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "id=cms-plugins-product-tag",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "xpath=//table[@id='botble-ecommerce-tables-product-tag-table']//tr[td[3]//a[text()='${name}']]//a[contains(@class,'btn-danger')]",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "xpath=(//button[@type='button'])[31]",
+    "value": ""
+  },
+  {
+    "command": "pause",
+    "target": "3000",
+    "value": ""
+  },
+  {
+    "command": "verifyElementNotPresent",
+    "target": "xpath=//*[@id='botble-ecommerce-tables-product-tag-table']//td[3]//a[normalize-space()='${name}']",
+    "value": ""
+  },
+  {
+    "command": "close",
+    "target": "",
+    "value": ""
+  }
+]
