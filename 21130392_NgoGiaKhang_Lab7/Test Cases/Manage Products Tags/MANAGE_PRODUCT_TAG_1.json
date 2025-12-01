@@ -1,0 +1,107 @@
+[
+  {
+    "command": "open",
+    "target": "https://nest.botble.com/admin/login",
+    "value": ""
+  },
+  {
+    "command": "type",
+    "target": "id=username",
+    "value": "admin"
+  },
+  {
+    "command": "type",
+    "target": "id=password",
+    "value": "RigbBhfdqOBGNlJIWM1ClA=="
+  },
+  {
+    "command": "click",
+    "target": "xpath=//form[@id='botble-a-c-l-forms-auth-login-form']/div/div[3]",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "id=cms-plugins-ecommerce",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "id=cms-plugins-product-tag",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "xpath=(//button[@type='button'])[11]",
+    "value": ""
+  },
+  {
+    "command": "type",
+    "target": "xpath=//*[@name='name' and @type='text' and @id='name']",
+    "value": "${name}"
+  },
+  {
+    "command": "type",
+    "target": "xpath=//*[@type='text' and @name='slug' and @id='slug']",
+    "value": "${permalink}"
+  },
+  {
+    "command": "type",
+    "target": "xpath=//textarea[@id='description']",
+    "value": "${description}"
+  },
+  {
+    "command": "select",
+    "target": "xpath=//*[@name='status']",
+    "value": "${status}"
+  },
+  {
+    "command": "click",
+    "target": "xpath=//button[@name='submitter']",
+    "value": ""
+  },
+  {
+    "command": "pause",
+    "target": "3000",
+    "value": ""
+  },
+  {
+    "command": "verifyElementPresent",
+    "target": "xpath=//*[@id='botble-ecommerce-tables-product-tag-table']//td[3]//a[normalize-space()='${name}']",
+    "value": ""
+  },
+  {
+    "command": "click",
+    "target": "xpath=//*[@id='botble-ecommerce-tables-product-tag-table']//td[3]//a[normalize-space()='${name}']",
+    "value": ""
+  },
+  {
+    "command": "verifyValue",
+    "target": "xpath=//*[@name='name' and @type='text' and @id='name']",
+    "value": "${name}"
+  },
+  {
+    "command": "storeAttribute",
+    "target": "xpath=//*[@type='text' and @name='slug' and @id='slug']@value",
+    "value": "slugValue"
+  },
+  {
+    "command": "assertNotEquals",
+    "target": "${slugValue}",
+    "value": ""
+  },
+  {
+    "command": "verifyText",
+    "target": "xpath=//textarea[@id='description']",
+    "value": "${description}"
+  },
+  {
+    "command": "verifySelectedValue",
+    "target": "xpath=//*[@name='status']",
+    "value": "${status}"
+  },
+  {
+    "command": "close",
+    "target": "",
+    "value": ""
+  }
+]
