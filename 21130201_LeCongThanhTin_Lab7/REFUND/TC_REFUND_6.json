@@ -1,0 +1,53 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Script - Search and Open Young Shop Order",
+    "description": "Tìm kiếm đơn hàng 'abc', và tương tác với icon của đơn hàng liên quan đến 'Young Shop'.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Click vào ô tìm kiếm",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": null
+    },
+    {
+      "step": 4,
+      "description": "Nhập từ khóa 'abc' vào ô tìm kiếm",
+      "action": "type",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 5,
+      "description": "Click icon đơn hàng 'Young Shop'",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Young Shop'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    }
+  ]
+}

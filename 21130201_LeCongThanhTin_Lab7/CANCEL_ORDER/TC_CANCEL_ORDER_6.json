@@ -1,0 +1,53 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Script - Search and Click Elements",
+    "description": "Tìm kiếm đơn hàng, click vào một số phần tử, và sau đó tương tác với icon 'Young Shop'.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Click vào ô tìm kiếm",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": null
+    },
+    {
+      "step": 4,
+      "description": "Click vào một phần tử div chung (có thể là kết quả tìm kiếm hoặc header)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='app']/div/div/main/div/div/div[2]/div/div/div"
+      },
+      "value": null
+    },
+    {
+      "step": 5,
+      "description": "Click icon sau text 'Young Shop'",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Young Shop'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    }
+  ]
+}

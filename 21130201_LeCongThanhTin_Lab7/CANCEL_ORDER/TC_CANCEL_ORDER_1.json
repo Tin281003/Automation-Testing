@@ -1,0 +1,188 @@
+{
+  "testCaseInfo": {
+    "name": "Cancel Order Scenario",
+    "description": "Đăng nhập admin, tìm kiếm đơn hàng và thực hiện hủy đơn.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt và truy cập trang đăng nhập",
+      "action": "openBrowser",
+      "target": "https://nest.botble.com/admin/login",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Phóng to cửa sổ trình duyệt",
+      "action": "maximizeWindow",
+      "target": null,
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Nhập Username",
+      "action": "setText",
+      "target": {
+        "strategy": "id",
+        "selector": "username"
+      },
+      "value": "admin"
+    },
+    {
+      "step": 4,
+      "description": "Nhập Password",
+      "action": "setText",
+      "target": {
+        "strategy": "id",
+        "selector": "password"
+      },
+      "value": "12345678"
+    },
+    {
+      "step": 5,
+      "description": "Click nút Login",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//button[@type='submit']"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Chờ trang tải xong",
+      "action": "waitForPageLoad",
+      "target": null,
+      "value": 10
+    },
+    {
+      "step": 7,
+      "description": "Điều hướng đến trang Orders",
+      "action": "navigateToUrl",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 8,
+      "description": "Click vào ô tìm kiếm",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": null
+    },
+    {
+      "step": 9,
+      "description": "Nhập từ khóa 'abc'",
+      "action": "setText",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 10,
+      "description": "Nhấn phím Enter",
+      "action": "sendKeys",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "{ENTER}"
+    },
+    {
+      "step": 11,
+      "description": "Chờ kết quả tìm kiếm tải lại",
+      "action": "delay",
+      "target": null,
+      "value": 2
+    },
+    {
+      "step": 12,
+      "description": "Click icon Global Store",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Global Store'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    },
+    {
+      "step": 13,
+      "description": "Click nút Option (thao tác)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div/div/div[3]/div[5]/button"
+      },
+      "value": null
+    },
+    {
+      "step": 14,
+      "description": "Click Dropdown Status",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "status"
+      },
+      "value": null
+    },
+    {
+      "step": 15,
+      "description": "Chọn trạng thái 'Canceled'",
+      "action": "selectOptionByLabel",
+      "target": {
+        "strategy": "id",
+        "selector": "status"
+      },
+      "value": "Canceled"
+    },
+    {
+      "step": 16,
+      "description": "Xác nhận Update Shipping Status",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-update-shipping-status-button"
+      },
+      "value": null
+    },
+    {
+      "step": 17,
+      "description": "Chờ popup đóng",
+      "action": "delay",
+      "target": null,
+      "value": 1
+    },
+    {
+      "step": 18,
+      "description": "Click nút Cancel Order (Chi tiết)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div[2]/div/div[3]/div/button"
+      },
+      "value": null
+    },
+    {
+      "step": 19,
+      "description": "Xác nhận hủy đơn hàng lần cuối",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-cancel-order-button"
+      },
+      "value": null
+    },
+    {
+      "step": 20,
+      "description": "Đóng trình duyệt",
+      "action": "closeBrowser",
+      "target": null,
+      "value": null
+    }
+  ]
+}

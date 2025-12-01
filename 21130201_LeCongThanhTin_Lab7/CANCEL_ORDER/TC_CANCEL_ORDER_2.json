@@ -1,0 +1,83 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Integration Script",
+    "description": "Sử dụng WebDriverBackedSelenium để tìm kiếm và hủy đơn hàng.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Click vào ô tìm kiếm",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": null
+    },
+    {
+      "step": 4,
+      "description": "Nhập từ khóa 'abc'",
+      "action": "type",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 5,
+      "description": "Nhấn phím Enter",
+      "action": "sendKeys",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "Keys.ENTER"
+    },
+    {
+      "step": 6,
+      "description": "Click icon (sau Global Store)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Global Store'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    },
+    {
+      "step": 7,
+      "description": "Click nút hủy (hoặc thao tác tương ứng)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div[2]/div/div[3]/div/button"
+      },
+      "value": null
+    },
+    {
+      "step": 8,
+      "description": "Xác nhận hủy đơn hàng",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-cancel-order-button"
+      },
+      "value": null
+    }
+  ]
+}

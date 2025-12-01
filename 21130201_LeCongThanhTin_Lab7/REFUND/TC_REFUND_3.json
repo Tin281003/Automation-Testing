@@ -1,0 +1,63 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Script - Search and Confirm Refund",
+    "description": "Tìm kiếm đơn hàng, truy cập chi tiết/thao tác, và xác nhận hoàn tiền (Refund).",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Nhập từ khóa 'abc' vào ô tìm kiếm",
+      "action": "type",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 4,
+      "description": "Click icon đơn hàng 'Global Store' (mở chi tiết hoặc thao tác)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Global Store'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    },
+    {
+      "step": 5,
+      "description": "Click nút Refund Option (Nút Hoàn tiền)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div/div/div[3]/div[2]/div[2]/button"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Xác nhận Refund",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-refund-payment-button"
+      },
+      "value": null
+    }
+  ]
+}

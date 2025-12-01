@@ -1,0 +1,103 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Script - Change Status and Cancel Order",
+    "description": "Tìm kiếm đơn hàng, thay đổi trạng thái giao hàng, và sau đó hủy đơn hàng.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Click vào ô tìm kiếm",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": null
+    },
+    {
+      "step": 4,
+      "description": "Nhập từ khóa 'abc' vào ô tìm kiếm",
+      "action": "type",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 5,
+      "description": "Click nút Option/Thao tác",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div/div/div[3]/div[5]/button"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Click Dropdown Status",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "status"
+      },
+      "value": null
+    },
+    {
+      "step": 7,
+      "description": "Chọn giá trị 'Ready to be shipped out'",
+      "action": "select",
+      "target": {
+        "strategy": "id",
+        "selector": "status"
+      },
+      "value": "label=Ready to be shipped out"
+    },
+    {
+      "step": 8,
+      "description": "Xác nhận Update Shipping Status",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-update-shipping-status-button"
+      },
+      "value": null
+    },
+    {
+      "step": 9,
+      "description": "Click nút Cancel Order (ở màn hình chi tiết)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div[2]/div/div[3]/div/button"
+      },
+      "value": null
+    },
+    {
+      "step": 10,
+      "description": "Xác nhận hủy đơn hàng",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-cancel-order-button"
+      },
+      "value": null
+    }
+  ]
+}

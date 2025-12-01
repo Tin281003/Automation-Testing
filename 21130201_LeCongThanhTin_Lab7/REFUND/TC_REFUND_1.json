@@ -1,0 +1,92 @@
+{
+  "testCaseInfo": {
+    "name": "Katalon WebUI Script - Admin Login and Order Refund",
+    "description": "Đăng nhập admin, truy cập menu đơn hàng, và thực hiện hoàn tiền (Refund) cho đơn hàng Global Store.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt tại trang đăng nhập",
+      "action": "openBrowser",
+      "target": "https://nest.botble.com/admin/login",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Phóng to cửa sổ trình duyệt",
+      "action": "maximizeWindow",
+      "target": null,
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Nhập Username ('admin')",
+      "action": "setText",
+      "target": {
+        "strategy": "id",
+        "selector": "username"
+      },
+      "value": "admin"
+    },
+    {
+      "step": 4,
+      "description": "Nhập Password ('12345678')",
+      "action": "setText",
+      "target": {
+        "strategy": "id",
+        "selector": "password"
+      },
+      "value": "12345678"
+    },
+    {
+      "step": 5,
+      "description": "Click nút Đăng nhập",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//button[@type='submit']"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Chờ trang tải xong sau khi đăng nhập",
+      "action": "waitForPageLoad",
+      "target": null,
+      "value": 10
+    },
+    {
+      "step": 7,
+      "description": "Click menu Plugins Ecommerce",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "cms-plugins-ecommerce"
+      },
+      "value": null
+    },
+    {
+      "step": 8,
+      "description": "Click menu Order",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "cms-plugins-ecommerce-order"
+      },
+      "value": null
+    },
+    {
+      "step": 9,
+      "description": "Chờ trang danh sách đơn hàng load",
+      "action": "delay",
+      "target": null,
+      "value": 2
+    },
+    {
+      "step": 10,
+      "description": "Click icon đơn hàng 'Global Store' (mở chi tiết hoặc thao tác)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Global Store'])[1]/following::*[name()='svg'][1]"

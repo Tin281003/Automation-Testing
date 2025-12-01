@@ -1,0 +1,93 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Enhanced Script - Cancel and Add Note",
+    "description": "Sử dụng WebDriverBackedSelenium để tìm kiếm, hủy đơn hàng và ghi chú riêng tư.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang Orders",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/ecommerce/orders",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Nhập từ khóa 'abc' vào ô tìm kiếm",
+      "action": "type",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//input[@type='search']"
+      },
+      "value": "abc"
+    },
+    {
+      "step": 4,
+      "description": "Click vào biểu tượng chỉnh sửa (Edit Icon) bằng CSS selector",
+      "action": "click",
+      "target": {
+        "strategy": "css",
+        "selector": "svg.icon.svg-icon-ti-ti-edit > path"
+      },
+      "value": null
+    },
+    {
+      "step": 5,
+      "description": "Click nút hủy đơn hàng (hoặc nút thao tác)",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div/div[2]/div/div[3]/div/button"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Xác nhận hủy đơn hàng",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "confirm-cancel-order-button"
+      },
+      "value": null
+    },
+    {
+      "step": 7,
+      "description": "Click vào trường 'Private Notes'",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "private_notes"
+      },
+      "value": null
+    },
+    {
+      "step": 8,
+      "description": "Nhập nội dung ghi chú ('het hang')",
+      "action": "type",
+      "target": {
+        "strategy": "id",
+        "selector": "private_notes"
+      },
+      "value": "het hang"
+    },
+    {
+      "step": 9,
+      "description": "Click nút Submit/Save trên form ghi chú",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "//div[@id='main-order-content']/div[2]/div/div/div[2]/div/div/form/button"
+      },
+      "value": null
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "testCaseInfo": {
+    "name": "Selenium RC Script - Admin Login",
+    "description": "Đăng nhập với tài khoản 'tin' và mật khẩu '123456', sau đó truy cập trang quản trị.",
+    "baseUrl": "https://nest.botble.com"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "description": "Mở trình duyệt (WebUI)",
+      "action": "openBrowser",
+      "target": "https://www.google.com/",
+      "value": null
+    },
+    {
+      "step": 2,
+      "description": "Khởi tạo Selenium và điều hướng đến trang đăng nhập",
+      "action": "open",
+      "target": "https://nest.botble.com/admin/login",
+      "value": null
+    },
+    {
+      "step": 3,
+      "description": "Click vào trường Username",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "username"
+      },
+      "value": null
+    },
+    {
+      "step": 4,
+      "description": "Nhập Username",
+      "action": "type",
+      "target": {
+        "strategy": "id",
+        "selector": "username"
+      },
+      "value": "tin"
+    },
+    {
+      "step": 5,
+      "description": "Click vào trường Password",
+      "action": "click",
+      "target": {
+        "strategy": "id",
+        "selector": "password"
+      },
+      "value": null
+    },
+    {
+      "step": 6,
+      "description": "Nhập Password",
+      "action": "type",
+      "target": {
+        "strategy": "id",
+        "selector": "password"
+      },
+      "value": "123456"
+    },
+    {
+      "step": 7,
+      "description": "Click nút Submit/Login (dựa trên vị trí của text 'Remember me?')",
+      "action": "click",
+      "target": {
+        "strategy": "xpath",
+        "selector": "(.//*[normalize-space(text()) and normalize-space(.)='Remember me?'])[1]/following::*[name()='svg'][1]"
+      },
+      "value": null
+    },
+    {
+      "step": 8,
+      "description": "Điều hướng đến trang admin chính",
+      "action": "open",
+      "target": "https://nest.botble.com/admin",
+      "value": null
+    }
+  ]
+}
